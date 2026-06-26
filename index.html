@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nicolai Villum – Visuel Kommunikation & Videoproduktion</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0d1b2a;
+      --navy-mid: #1a2e44;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --white: #ffffff;
+      --off-white: #f8f7f4;
+      --gray-light: #e8e6e1;
+      --gray: #888880;
+      --text: #1a1a18;
+      --font-serif: 'Georgia', 'Times New Roman', serif;
+      --font-sans: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 64px;
+    }
+
+    .nav-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .nav-name span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 100px 2.5rem 5rem;
+    }
+
+    .hero-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-eyebrow span {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.12;
+      margin-bottom: 2rem;
+      max-width: 800px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-sub {
+      font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+      color: rgba(255,255,255,0.65);
+      max-width: 560px;
+      line-height: 1.85;
+      margin-bottom: 3rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 0.9rem 2.2rem;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--gold-light); }
+
+    .btn-secondary {
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.8);
+      padding: 0.9rem 2.2rem;
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--gold);
+      padding: 2rem 2.5rem;
+    }
+
+    .stats-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: var(--font-serif);
+      font-size: 2.4rem;
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--navy-mid);
+      opacity: 0.8;
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 6rem 2.5rem; }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .section-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-eyebrow::before {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .section-eyebrow span {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      color: var(--navy);
+    }
+
+    .section-lead {
+      font-size: 1.05rem;
+      color: var(--gray);
+      max-width: 620px;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+    }
+
+    /* ── VÆRDIPROP ── */
+    #vaerdi { background: var(--off-white); }
+
+    .vaerdi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .vaerdi-text p {
+      font-size: 1rem;
+      color: #444;
+      line-height: 1.9;
+      margin-bottom: 1.2rem;
+    }
+
+    .vaerdi-text strong { color: var(--navy); }
+
+    .vaerdi-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .vaerdi-list li {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .vaerdi-list li::before {
+      content: '';
+      display: block;
+      min-width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin-top: 0.55rem;
+    }
+
+    .vaerdi-list li span {
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    /* ── KOMPETENCER ── */
+    .kompetencer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--gray-light);
+    }
+
+    .komp-card {
+      padding: 2.2rem 1.8rem;
+      border-right: 1px solid var(--gray-light);
+      border-bottom: 1px solid var(--gray-light);
+      transition: background 0.2s;
+    }
+
+    .komp-card:hover { background: var(--off-white); }
+
+    .komp-card:nth-child(3n) { border-right: none; }
+    .komp-card:nth-last-child(-n+3) { border-bottom: none; }
+
+    .komp-number {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      color: var(--gray-light);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .komp-card h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 0.6rem;
+    }
+
+    .komp-card p {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* ── KARRIERE ── */
+    #karriere { background: var(--off-white); }
+
+    .timeline {
+      margin-top: 1rem;
+    }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--gray-light);
+    }
+
+    .tl-item:last-child { border-bottom: none; }
+
+    .tl-period {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding-top: 0.15rem;
+    }
+
+    .tl-content h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+
+    .tl-content p {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.75;
+    }
+
+    .tl-highlight {
+      display: inline-block;
+      margin-top: 0.6rem;
+      background: var(--navy);
+      color: var(--gold);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 0.8rem;
+    }
+
+    /* ── FILM ── */
+    #film {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    #film .section-title { color: var(--white); }
+    #film .section-lead { color: rgba(255,255,255,0.55); }
+
+    .film-quote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-style: italic;
+      color: var(--gold-light);
+      line-height: 1.4;
+      margin-bottom: 2.5rem;
+      padding-left: 1.5rem;
+      border-left: 3px solid var(--gold);
+    }
+
+    #film p {
+      font-size: 0.98rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.9;
+      max-width: 640px;
+      margin-bottom: 1rem;
+    }
+
+    .tools-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 2rem 0;
+    }
+
+    .tool-chip {
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.6);
+      padding: 0.4rem 1rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+    }
+
+    .btn-showreel {
+      display: inline-block;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 0.9rem 2.2rem;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-showreel:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    /* ── KONTAKT ── */
+    #kontakt { background: var(--white); }
+
+    .kontakt-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .kontakt-left p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.85;
+      margin-bottom: 2rem;
+    }
+
+    .kontakt-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .kontakt-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .kontakt-row-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      min-width: 80px;
+    }
+
+    .kontakt-row a {
+      font-size: 0.95rem;
+      color: var(--navy);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 1px;
+      transition: color 0.2s;
+    }
+
+    .kontakt-row a:hover { color: var(--gold); }
+
+    .kontakt-right {
+      background: var(--off-white);
+      padding: 2.5rem;
+    }
+
+    .kontakt-right h3 {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 1.5rem;
+    }
+
+    .use-case-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .use-case-list li {
+      display: flex;
+      gap: 0.8rem;
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .use-case-list li::before {
+      content: '→';
+      color: var(--gold);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+    }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    /* ── ANIMATIONER ── */
+
+    /* Hero indgang */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .hero-eyebrow { animation: fadeUp 0.7s ease both; animation-delay: 0.1s; }
+    .hero h1      { animation: fadeUp 0.8s ease both; animation-delay: 0.25s; }
+    .hero-sub     { animation: fadeUp 0.8s ease both; animation-delay: 0.45s; }
+    .hero-actions { animation: fadeUp 0.8s ease both; animation-delay: 0.6s; }
+
+    /* Scroll-reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Stagger children */
+    .stagger > * {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .stagger.visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.05s; }
+    .stagger.visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.15s; }
+    .stagger.visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.25s; }
+    .stagger.visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.35s; }
+    .stagger.visible > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.45s; }
+    .stagger.visible > *:nth-child(6) { opacity: 1; transform: none; transition-delay: 0.55s; }
+
+    /* Tidslinjer glider ind */
+    .tl-item {
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    /* Kompetence-kort lift */
+    .komp-card {
+      transition: background 0.2s, transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .komp-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.07);
+    }
+
+    /* Nav-scroll effekt */
+    nav {
+      transition: box-shadow 0.3s ease;
+    }
+
+    nav.scrolled {
+      box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+    }
+
+    /* Guld streg-animation under nav-links */
+    .nav-links a {
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after { width: 100%; }
+
+    /* Stats tæller-animation */
+    .stat-num {
+      transition: transform 0.3s ease;
+    }
+
+    .stats-bar:hover .stat-num {
+      transform: scale(1.04);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .hero { padding: 90px 1.5rem 4rem; }
+      .stats-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+      .vaerdi-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .kompetencer-grid { grid-template-columns: 1fr; }
+      .komp-card { border-right: none; }
+      .komp-card:nth-last-child(-n+3) { border-bottom: 1px solid var(--gray-light); }
+      .komp-card:last-child { border-bottom: none; }
+      .tl-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .kontakt-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-name">Nicolai <span>Villum</span></span>
+    <ul class="nav-links">
+      <li><a href="#vaerdi">Om</a></li>
+      <li><a href="#kompetencer">Kompetencer</a></li>
+      <li><a href="#karriere">Erfaring</a></li>
+      <li><a href="#film">Film</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">
+        <span>Visuel kommunikation · Videojournalistik · Strategisk indhold</span>
+      </div>
+      <h1>
+        Kommunikation der<br>
+        <em>engagerer, informerer</em><br>
+        og skaber tillid.
+      </h1>
+      <p class="hero-sub">
+        25+ års erfaring som videojournalist, fotograf og kommunikationskonsulent for virksomheder, ministerier og NGO'er. Fra strategi til færdigt produkt.
+      </p>
+      <div class="hero-actions">
+        <a href="#vaerdi" class="btn-primary">Læs om mig</a>
+        <a href="#kontakt" class="btn-secondary">Tag kontakt</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stats-inner stagger">
+      <div>
+        <div class="stat-num">25+</div>
+        <div class="stat-label">Års erfaring i mediebranchen</div>
+      </div>
+      <div>
+        <div class="stat-num">+20%</div>
+        <div class="stat-label">Organisk vækst på SoMe hos Danske Rederier</div>
+      </div>
+      <div>
+        <div class="stat-num">15+</div>
+        <div class="stat-label">År som selvstændig konsulent</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VÆRDIPROP -->
+  <section id="vaerdi">
+    <div class="container">
+      <div class="vaerdi-grid">
+        <div class="vaerdi-text reveal-left">
+          <div class="section-eyebrow"><span>Om Nicolai</span></div>
+          <h2 class="section-title">En kommunikationspartner<br>med journalistisk DNA</h2>
+          <p>
+            Mit arbejde tager udgangspunkt i den gode historie og i forståelsen af, <strong>hvordan den formidles bedst</strong> – visuelt, journalistisk og menneskeligt.
+          </p>
+          <p>
+            Jeg begyndte min karriere i TDC og London, inden jeg uddannede mig til film- og tv-produktionstekniker og arbejdede som fotograf og klipper på <strong>DR's TV-Avisen og 21 Søndag</strong>. Det journalistiske håndværk – præcision, troværdighed og kvalitet – bærer jeg med i alt, hvad jeg laver.
+          </p>
+          <p>
+            Siden har jeg i over 15 år som selvstændig rådgivet organisationer, virksomheder, ministerier og NGO'er. Senest som videojournalist og kommunikationskonsulent hos <strong>Danske Rederier</strong>, hvor mit arbejde bidrog til en organisk vækst på over 20% på sociale medier på under ét år.
+          </p>
+        </div>
+        <div class="reveal">
+          <ul class="vaerdi-list">
+            <li><span><strong>Full-service kommunikation</strong> – fra idéudvikling og strategi til produktion og publicering</span></li>
+            <li><span><strong>Dokumenteret effekt</strong> – konkrete resultater med målbare væksttal</span></li>
+            <li><span><strong>Stærkt journalistisk fundament</strong> fra DR, TV3 og 15+ år i branchen</span></li>
+            <li><span><strong>Erfaring med komplekse organisationer</strong> – ministerier, NGO'er, fagforbund og private virksomheder</span></li>
+            <li><span><strong>Alsidig teknisk profil</strong> – video, foto, lyd, grafik og tekst under ét tag</span></li>
+            <li><span><strong>Tillidsskabende samarbejdspartner</strong> der fungerer i alle led af organisationen</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KOMPETENCER -->
+  <section id="kompetencer">
+    <div class="container">
+      <div class="section-eyebrow"><span>Hvad jeg leverer</span></div>
+      <h2 class="section-title">Kompetencer</h2>
+      <p class="section-lead">En komplet kommunikationsværktøjskasse til kommunikationsafdelinger der vil mere.</p>
+      <div class="kompetencer-grid stagger">
+        <div class="komp-card">
+          <div class="komp-number">01</div>
+          <h3>Kreativ videoproduktion</h3>
+          <p>Fra idéfase til færdigt produkt. SoMe film, tv-programmer, explainers, versioneringer og konkurrencer.</p>
+        </div>
+        <div class="komp-card">
+          <div class="komp-number">02</div>
+          <h3>Strategisk SoMe-indhold</h3>
+          <p>Relevant og målgruppeorienteret indhold til sociale medier – med dokumenteret effekt på organisk reach.</p>
+        </div>
+        <div class="komp-card">
+          <div class="komp-number">03</div>
+          <h3>Kommunikationsrådgivning</h3>
+          <p>Strategisk rådgivning inden for kommunikation, mediehåndtering og indholdsplanlægning.</p>
+        </div>
+        <div class="komp-card">
+          <div class="komp-number">04</div>
+          <h3>Foto & visuel identitet</h3>
+          <p>Professionel fotografering med øje for historiefortælling og organisationens visuelle udtryk.</p>
+        </div>
+        <div class="komp-card">
+          <div class="komp-number">05</div>
+          <h3>Journalistik & tekst</h3>
+          <p>Nyhedshistorier, portrætter og reportager til interne og eksterne platforme – skrevet med journalistisk præcision.</p>
+        </div>
+        <div class="komp-card">
+          <div class="komp-number">06</div>
+          <h3>Digital tilstedeværelse</h3>
+          <p>Ansvar for hjemmeside, nyhedsbreve og sociale medier – herunder arbejde i Umbraco og MailChimp.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KARRIERE -->
+  <section id="karriere">
+    <div class="container">
+      <div class="section-eyebrow"><span>Erfaring</span></div>
+      <h2 class="section-title">Karriereforløb</h2>
+      <div class="timeline stagger">
+
+        <div class="tl-item">
+          <div class="tl-period">Senest</div>
+          <div class="tl-content">
+            <h3>Videojournalist & kommunikationskonsulent — Danske Rederier</h3>
+            <p>Producerede video, foto og nyhedshistorier til organisationens platforme. Dagligt ansvar for sociale medier, nyhedsbreve og hjemmeside i Umbraco og MailChimp.</p>
+            <span class="tl-highlight">+20% organisk vækst på SoMe på under ét år</span>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-period">15+ år</div>
+          <div class="tl-content">
+            <h3>Selvstændig kommunikationskonsulent & videojournalist</h3>
+            <p>Rådgiver og producent for organisationer, virksomheder, ministerier og NGO'er. Herunder Fagbladet 3F, hvor jeg grundlagde en af de første web-tv-kanaler i en organisationskontekst.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-period">DR</div>
+          <div class="tl-content">
+            <h3>TV-fotograf & klipper — DR</h3>
+            <p>TV-Avisen og nyhedsmagasinet 21 Søndag. Det journalistiske håndværk fra bunden – præcision, troværdighed og kvalitet som ufravigelige parametre.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-period">Uddannelse</div>
+          <div class="tl-content">
+            <h3>Film- & tv-produktionstekniker</h3>
+            <p>Uddannet ved DR og Media College Viborg.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-period">London</div>
+          <div class="tl-content">
+            <h3>Speaker — TV3</h3>
+            <p>Del af en international medieproduktion. Arbejdede professionelt med stemmen og den mundtlige formidling som kommunikationsværktøj.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FILM -->
+  <section id="film">
+    <div class="container">
+      <div class="section-eyebrow"><span>Film i markedsføring</span></div>
+      <h2 class="section-title">Onlinevideo som strategisk værktøj</h2>
+      <blockquote class="film-quote reveal">
+        "Tell it and show it."
+      </blockquote>
+      <p>
+        Video er i dag det mest effektfulde kommunikationsformat – og potentialet vokser fortsat. Med mere end 20 års erfaring inden for produktion af film, tv, lyd og SoMe-indhold leverer jeg indhold, der ikke blot ser godt ud, men som <strong style="color:rgba(255,255,255,0.9)">skaber resultater</strong>.
+      </p>
+      <p>
+        Jeg filmer med professionelle kameraopsætninger og mobile løsninger, redigerer i Premiere Pro og Final Cut Pro, arbejder med lyd i Logic Pro og producerer grafisk indhold i Canva på ekspertniveau.
+      </p>
+      <div class="tools-row">
+        <span class="tool-chip">Premiere Pro</span>
+        <span class="tool-chip">Final Cut Pro</span>
+        <span class="tool-chip">Logic Pro</span>
+        <span class="tool-chip">Canva</span>
+        <span class="tool-chip">Professionelt kamera</span>
+        <span class="tool-chip">Mobile løsninger</span>
+      </div>
+      <a href="https://nicolaivillum.dk" target="_blank" class="btn-showreel">Se Showreel</a>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt">
+    <div class="container">
+      <div class="section-eyebrow"><span>Kontakt</span></div>
+      <h2 class="section-title">Lad os tale om jeres<br>kommunikationsbehov</h2>
+      <div class="kontakt-grid stagger">
+        <div class="kontakt-left">
+          <p>
+            Søger I en erfaren kommunikationspartner til at løfte jeres video, foto eller strategiske kommunikation? Jeg er vant til at arbejde tæt med kommunikationsafdelinger og levere indhold, der rammer målgruppen.
+          </p>
+          <div class="kontakt-detail">
+            <div class="kontakt-row">
+              <span class="kontakt-row-label">Web</span>
+              <a href="https://nicolaivillum.dk" target="_blank">nicolaivillum.dk</a>
+            </div>
+          </div>
+        </div>
+        <div class="kontakt-right">
+          <h3>Jeg kan hjælpe med</h3>
+          <ul class="use-case-list">
+            <li>Løbende videoproduktion til SoMe og web</li>
+            <li>Kampagneproduktion fra brief til levering</li>
+            <li>Strategisk kommunikationsrådgivning</li>
+            <li>Foto til organisation, events og portrætter</li>
+            <li>Nyhedsproduktion og journalistisk indhold</li>
+            <li>Oplæring og sparring med interne teams</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 <a href="https://nicolaivillum.dk">Nicolai Villum</a> &nbsp;·&nbsp; Visuel kommunikatør, videojournalist og fotograf
+  </footer>
+
+  <script>
+    // Scroll-reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal, .reveal-left, .stagger').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Section titles fade-up
+    const titleObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'none';
+          titleObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.section-title, .section-eyebrow, .section-lead').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      titleObserver.observe(el);
+    });
+
+    // Nav skygge ved scroll
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Tæller-animation til stats
+    function animateCount(el, target, prefix, suffix, duration) {
+      const start = performance.now();
+      const update = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = prefix + Math.round(eased * target) + suffix;
+        if (progress < 1) requestAnimationFrame(update);
+      };
+      requestAnimationFrame(update);
+    }
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCount(document.querySelectorAll('.stat-num')[0], 25, '', '+', 1200);
+          animateCount(document.querySelectorAll('.stat-num')[1], 20, '+', '%', 1400);
+          animateCount(document.querySelectorAll('.stat-num')[2], 15, '', '+', 1000);
+          statsObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.5 });
+
+    statsObserver.observe(document.querySelector('.stats-bar'));
+  </script>
+</body>
+</html>
